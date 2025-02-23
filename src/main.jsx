@@ -9,15 +9,11 @@ const router =createBrowserRouter([
     path: "/",
     element: <App/>,
   },
-  {
-    path: "/task",
-    element: <TaskPage/>
-  }
+
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
+    <RouterProvider router={router}/>
+          
   </StrictMode>
 )

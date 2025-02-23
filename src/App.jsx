@@ -10,19 +10,19 @@ import {v4} from "uuid";
 function App() {
   const [tasks, setTasks] = useState([
     {
-      id: v4(),
+      id: 1,
       title: 'Estudar Programação',
       description: 'Estudar java, c# .net, javascript, typescript, html, css',
       isCompleted: false,
     },
     {
-      id: v4,
+      id: 2,
       title: 'Estudar ingles',
       description: 'Desenvolver habilidade de escuta',
       isCompleted: false,
     },
     {
-      id: v4,
+      id: 3,
       title: 'Estudar Frameworks',
       description: 'Estudar springboot, .net, node, tailwind, react',
       isCompleted: false,
