@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import './App.css';
@@ -8,26 +8,36 @@ import {v4} from "uuid";
 
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: 'Estudar Programação',
-      description: 'Estudar java, c# .net, javascript, typescript, html, css',
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      title: 'Estudar ingles',
-      description: 'Desenvolver habilidade de escuta',
-      isCompleted: false,
-    },
-    {
-      id: 3,
-      title: 'Estudar Frameworks',
-      description: 'Estudar springboot, .net, node, tailwind, react',
-      isCompleted: false,
-    },
-  ])
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks"))|| []
+  );
+
+  useEffect(()=>{
+    localStorage.setItem("tasks",   JSON.stringify(tasks))
+  }, [tasks]);
+
+  
+  
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/todos?_limit=10",
+        {
+          method: "GET",
+        }
+      );
+      const data = await response.json();
+      setTasks(data);
+    };
+    // SE QUISER, VOCÊ PODE CHAMAR UMA API PARA PEGAR AS TAREFAS
+    // fetchTasks();
+  }, []);
+
+  //fetchTasks();
+  //*** Retirar este comento quandotiver conexa para capturar do API
+  
+  
+  
 
   function onTaskClick (taskId) {
    
